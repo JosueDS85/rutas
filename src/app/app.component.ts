@@ -6,5 +6,15 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor() {}
+  logged:boolean
+  constructor(private miRouter:Router) {
+    this.logged=false
+
+    if(this.logged){
+      this.miRouter.navigate(['tabs','tab1'])
+    }else{
+      this.miRouter.navigate(['loggin'])
+    }
+
+  }
 }
