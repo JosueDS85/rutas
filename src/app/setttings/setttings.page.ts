@@ -16,4 +16,9 @@ cerrarsesion(){
   ngOnInit() {
   }
 
+  logout() {
+    localStorage.removeItem('rutasUser')
+    this.mirouter.navigate(['loggin'])
+  }
+
 }

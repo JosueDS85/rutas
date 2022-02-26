@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router'
 import {AlertController } from '@ionic/angular';
+import {UserService} from '../services/user.service'
 
 @Component({
   selector: 'app-loggin',
@@ -22,10 +23,20 @@ export class LogginPage implements OnInit {
     await instanciaAlert.present()
   }
   
-  constructor(private mirouter:Router,public alerta:AlertController) { }
+  constructor(private mirouter:Router,public alerta:AlertController,private userService:UserService) { }
   iniciarsesion(){
     if(this.username=='Josue' && this.password=='123'){
-    this.mirouter.navigate(["tabs","tab1"])
+      let userInfo ={
+        nombre:'Josue',
+        mail:'Doaz@gmail',
+        rol:'admin'
+      }
+
+      this.userService.infoUser = userInfo
+
+      localStorage.setItem('rutasUser', JSON.stringify(userInfo))/* stringify: metodo para cconvertir a string */
+
+      this.mirouter.navigate(["tabs","tab1"])
       this.username=''
       this.password=''
    }
